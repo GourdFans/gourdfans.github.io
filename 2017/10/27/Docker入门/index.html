@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Docker," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="https://scyllakeeper.github.io/tags/index.html">
+<meta name="description" content="在使用win的时候一直有个问题，很多软件需要用，但是使用频率很低，如果每个需要用的软件都装上的话，系统会变得非常庞大，后果就是导致系统运行起来非常缓慢，无奈只能重装系统了。在使用mac的时候，也遇到这种情况，而且删除软件的时候，不知道哪些文件改删除，哪些不改删除，慢慢的吞噬着硬盘的空间。近两年，微服务的概念兴起，偶然机会接触到docker，容器的概念，相当于虚拟机，但是对于传统虚拟机而言，启动和使">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker入门">
+<meta property="og:url" content="https://scyllakeeper.github.io/2017/10/27/Docker入门/index.html">
 <meta property="og:site_name" content="zhang桌子的随笔">
+<meta property="og:description" content="在使用win的时候一直有个问题，很多软件需要用，但是使用频率很低，如果每个需要用的软件都装上的话，系统会变得非常庞大，后果就是导致系统运行起来非常缓慢，无奈只能重装系统了。在使用mac的时候，也遇到这种情况，而且删除软件的时候，不知道哪些文件改删除，哪些不改删除，慢慢的吞噬着硬盘的空间。近两年，微服务的概念兴起，偶然机会接触到docker，容器的概念，相当于虚拟机，但是对于传统虚拟机而言，启动和使">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-26T14:01:37.570Z">
+<meta property="og:updated_time" content="2017-10-27T06:34:55.904Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
+<meta name="twitter:title" content="Docker入门">
+<meta name="twitter:description" content="在使用win的时候一直有个问题，很多软件需要用，但是使用频率很低，如果每个需要用的软件都装上的话，系统会变得非常庞大，后果就是导致系统运行起来非常缓慢，无奈只能重装系统了。在使用mac的时候，也遇到这种情况，而且删除软件的时候，不知道哪些文件改删除，哪些不改删除，慢慢的吞噬着硬盘的空间。近两年，微服务的概念兴起，偶然机会接触到docker，容器的概念，相当于虚拟机，但是对于传统虚拟机而言，启动和使">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://scyllakeeper.github.io/tags/"/>
+  <link rel="canonical" href="https://scyllakeeper.github.io/2017/10/27/Docker入门/"/>
 
 
 
 
 
-  <title>标签 | zhang桌子的随笔</title>
+  <title>Docker入门 | zhang桌子的随笔</title>
   
 
 
@@ -227,40 +231,159 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://scyllakeeper.github.io/2017/10/27/Docker入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="桌子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhang桌子的随笔">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline">标签</h2>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 2 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Docker/" style="font-size: 12px; color: #ccc">Docker</a> <a href="/tags/工具/" style="font-size: 12px; color: #ccc">工具</a>
-            </div>
-          </div>
+          <h2 class="post-title" itemprop="name headline">Docker入门</h2>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T14:30:16+08:00">
+                2017-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>在使用win的时候一直有个问题，很多软件需要用，但是使用频率很低，如果每个需要用的软件都装上的话，系统会变得非常庞大，后果就是导致系统运行起来非常缓慢，无奈只能重装系统了。在使用mac的时候，也遇到这种情况，而且删除软件的时候，不知道哪些文件改删除，哪些不改删除，慢慢的吞噬着硬盘的空间。近两年，微服务的概念兴起，偶然机会接触到docker，容器的概念，相当于虚拟机，但是对于传统虚拟机而言，启动和使用各方面都不尽相同，而且正好能够满足我的需求，于是在mac上安装docker来完成日常的开发工作，安装步骤如下。</p>
+<ol>
+<li>在mac上安装docker，下载地址<a href="https://www.docker.com/products/docker#/mac" target="_blank" rel="external">https://www.docker.com/products/docker#/mac</a> 下载安装即可</li>
+<li>docker上有镜像，和容器的概念，镜像相当于系统盘，容器相当于运行的系统。如果要运行系统，首先需要有系统盘才行。</li>
+<li>下载images，我想运行ubuntu系统，可以使用 docker search ubuntu 来搜索，然后找到需要的系统后，docker pull ubuntu即可。但是很遗憾，你会发现下载失败，因为index.docker.io原因无法访问，所以只能使用国内的镜像文件，阿里云上有ubuntu的镜像文件，从aliyun上下载的ubuntu镜像。下载命令如下。需要制定域名地址 docker pull registry.cn-hangzhou.aliyuncs.com/acs/ubuntu</li>
+<li>下载以后可以通过 docker images 查看镜像文件    </li>
+<li>通过docker run -ti ubuntu /bin/bash 启动容器，你会发现已经进去了ubuntu系统。</li>
+<li>进入系统以后，需要先执行apt-get update来更新源文件，接下来就是安装各种需要的软件了</li>
+<li>退出出系统以后，可以通过命令 docker ps -a查看正在运行的容器。</li>
+<li>在容器中安装了很多软件，如果还是用原来的镜像启动的话，那么每次都需要重新安装了，所以可以生成自己的images，从正在运行的容器中去生成，命令如下。 docker commit 2d4c49bd7269 ubuntu:develop</li>
+<li>如果推出容器之后，想再进去，可以运行  docker start 2d4c49bd7269 来启动，然后 docker attach 2d4c49bd7269来再次进去容器中去.</li>
+<li>如果想查看正在运行中的容器，可以使用docker ps -a来查看。</li>
+<li>如果要关掉某个容器的话，需要使用docker stop  docker rm 2d4c49bd7269 即可</li>
+<li>如果需要访问docker内的地址，可以使用下面的命令 -p 8080:8080  建立端口映射，这样访问本机8080端口，便会打到docker内部了</li>
+</ol>
+<p>上面这些命令，已经可以把docker玩转起来了，我在ubuntu中安装了mysql nginx redis等，简直就是理想的实验场地啊。</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/26/堡垒机自动登录/" rel="next" title="堡垒机自动登录">
+                <i class="fa fa-chevron-left"></i> 堡垒机自动登录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -269,6 +392,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
