@@ -79,15 +79,18 @@
 
 
 
+<meta name="description" content="上次开发了一个秒杀类似的业务，活动开始以后对系统监控，除了用阿里的Tsar来查看系统之外，还需要监控数据库，Redis之类的等等。一个窗口根本看不过来，所以就想着有没有监控系统来能够一眼看到系统的具体情况，在公司有一套监控系统，经过审查代码发现用的是Grafana来搭建的。经过调研发现线程的系统有两套 ELK或者是Grafana + Influxdb + Collectd来搭建。思路都差不多，每台">
 <meta name="keywords" content="监控">
 <meta property="og:type" content="article">
 <meta property="og:title" content="监控系统搭建">
-<meta property="og:url" content="https://scyllakeeper.github.io/2017/12/07/监控系统搭建/index.html">
+<meta property="og:url" content="https://gourdfans.github.io/2017/12/07/监控系统搭建/index.html">
 <meta property="og:site_name" content="zhang桌子的随笔">
+<meta property="og:description" content="上次开发了一个秒杀类似的业务，活动开始以后对系统监控，除了用阿里的Tsar来查看系统之外，还需要监控数据库，Redis之类的等等。一个窗口根本看不过来，所以就想着有没有监控系统来能够一眼看到系统的具体情况，在公司有一套监控系统，经过审查代码发现用的是Grafana来搭建的。经过调研发现线程的系统有两套 ELK或者是Grafana + Influxdb + Collectd来搭建。思路都差不多，每台">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-08T09:00:55.539Z">
+<meta property="og:updated_time" content="2017-12-13T14:02:43.852Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="监控系统搭建">
+<meta name="twitter:description" content="上次开发了一个秒杀类似的业务，活动开始以后对系统监控，除了用阿里的Tsar来查看系统之外，还需要监控数据库，Redis之类的等等。一个窗口根本看不过来，所以就想着有没有监控系统来能够一眼看到系统的具体情况，在公司有一套监控系统，经过审查代码发现用的是Grafana来搭建的。经过调研发现线程的系统有两套 ELK或者是Grafana + Influxdb + Collectd来搭建。思路都差不多，每台">
 
 
 
@@ -117,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="https://scyllakeeper.github.io/2017/12/07/监控系统搭建/"/>
+  <link rel="canonical" href="https://gourdfans.github.io/2017/12/07/监控系统搭建/"/>
 
 
 
@@ -240,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://scyllakeeper.github.io/2017/12/07/监控系统搭建/">
+    <link itemprop="mainEntityOfPage" href="https://gourdfans.github.io/2017/12/07/监控系统搭建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="桌子">
@@ -318,7 +321,26 @@
       
 
       
-        
+        <p>上次开发了一个秒杀类似的业务，活动开始以后对系统监控，除了用阿里的Tsar来查看系统之外，还需要监控数据库，Redis之类的等等。一个窗口根本看不过来，所以就想着有没有监控系统来能够一眼看到系统的具体情况，在公司有一套监控系统，经过审查代码发现用的是Grafana来搭建的。经过调研发现线程的系统有两套 ELK或者是Grafana + Influxdb + Collectd来搭建。思路都差不多，每台机器上安装上收集器，把收集到的信息存放到ES或者时序数据库里面，然后通过Grafana或者Kiban来做前端展示。感觉Grafana比较简单一点，于是使用这套系统来搭建。</p>
+<p>首先是Grafana安装，可以参考官方文档进行安装都可以了，不过是国内下载比较慢，需要点时间才能下载下来。Centos安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.2-1.x86_64.rpm</div></pre></td></tr></table></figure>
+<p>安装完毕把应用加入到启动列表里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo /bin/systemctl daemon-reload</div><div class="line">sudo /bin/systemctl enable grafana-server.service</div></pre></td></tr></table></figure>
+<p>然后就可以启动Grafana了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /bin/systemctl start grafana-server.service</div></pre></td></tr></table></figure>
+<p>启动以后的Grafana会在3000端口，访问3000端口就可以访问系统了，接下来就是配置时序数据库,安装Influxdb，然后配置图标即可。</p>
+<p>Influxdb安装也可以参考官方文档，是一个Go语言来编写的时序数据库，关于时序数据库的概念，可以去Google一下，其实最主要的一点就是时间递增的，每条记录都有时间，这样能够清楚的知道一个数据的变化过程。Influxdb现在版本在1.。不过我安装的是1.0版本的，安装也特别简单，参考官网即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://dl.influxdata.com/influxdb/releases/influxdb-1.0.0.x86_64.rpm</div><div class="line">sudo yum localinstall influxdb-1.0.0.x86_64.rpm</div></pre></td></tr></table></figure>
+<p>在启动之前需要修改一下Influxdb配置，influxdb.conf。因为默认Collectd是关闭的，设置为开启即可，如果是内网绑定一下内网地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[[collectd]]</div><div class="line">  enabled = true</div><div class="line">  bind-address = &quot;127.0.0.1:25826&quot;</div><div class="line">  database = &quot;collectd&quot;</div></pre></td></tr></table></figure>
+<p>配置完毕以后启动influxdb:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service influxdb start</div></pre></td></tr></table></figure>
+<p>influxdb会在8083端口打开一个web的操作界面，可以通过web页面去操作数据，插入或者查询数据等操作，如果能够打开，说明也已经启动成功了。</p>
+<p>关于Collectd的安装，没有其他的参考官网安装即可，只需要在配置的时候，引入Network的Plugin并且配置Network地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;Plugin network&gt;</div><div class="line">        Server &quot;127.0.0.1&quot; &quot;25826&quot;</div><div class="line">&lt;/Plugin&gt;</div></pre></td></tr></table></figure>
+<p>25826是influxdb监听的端口，Collectd会把指定的数据写入到该端口，Influxdb会监听并把数据写入到数据库中.</p>
+<p>上面的都安装完毕以后，就需要在Grafana中配置DB，配置相应的图表。对于图表的配置需要花点时间去摸索，里面有很多函数，而且数据收集的单位之类的都不尽相同，现在之只能够搭建简单的监控，Collectd有很多插件可以去监控Mysql，redis等等。如果不满足要求，可以通过Influxdb的Client去收集自己系统中运行的数据，比如QPS、RT等信息。都可以用该系统来实现了。</p>
+
       
     </div>
     
