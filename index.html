@@ -239,6 +239,143 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://scyllakeeper.github.io/2017/12/07/监控系统搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="桌子">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhang桌子的随笔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/07/监控系统搭建/" itemprop="url">监控系统搭建</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-07T11:58:09+08:00">
+                2017-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/07/监控系统搭建/" class="leancloud_visitors" data-flag-title="监控系统搭建">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/07/监控系统搭建/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://scyllakeeper.github.io/2017/11/06/Java中注解的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -288,6 +425,17 @@
 
           
           
+             <span id="/2017/11/06/Java中注解的使用/" class="leancloud_visitors" data-flag-title="Java中注解的使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -310,54 +458,16 @@
       
         
           
-            <p>在日常的开发中，经常会使用到类似这样的东西 @Test @Override等东西，特别是在使用第三方框架的时候比如Spring中就会有大量用到注解的地方。关于什么是注解？怎么去使用注解？如何实现一个注解？这些地方以前没有了解过，今天就把Java中关于注解的使用给理一理。</p>
-<p>注解是在J2SE 1.5版本中引入的，主要是提供了一种机制，这种机制允许程序员在编写代码的时候可以定义一些元数据。所谓的元数据这个词，可以这样来及理解。元数据就是定义自身的数据。注解就是代码的元数据，它们包含了代码的信息.</p>
-<p>Annotation其实是一种接口，通过Java的反射机制相关的API来访问Annotation信息，相关类根据这些信息来决定如何使用程序的元素或者改变它们的行为。但是当一个类直接继承java.lang.annotation.Annotation接口时，仍是接口，而非注解。要想成为注解，只能通过关键字@interface来声明</p>
-<p>@interface声明一个注解的时候，其中每一个方法实际都声明了一个配置参数，方法名就是参数名称，返回值就是参数的类型，可以通过default来实现默认的值</p>
-<p>在Java中，关于注解，有四个元注解，同样所谓的元注解，就是可以用来定义注解的注解。包含一下四中</p>
-<ul>
-<li>@Retention 主要用来表示注解的生命周期</li>
-<li>@Target 主要用来表示注解的作用域</li>
-<li>@Documented 用来生成Java doc文档中的内容</li>
-<li>@Inerited 用来定义使用注解的类的继承相关的东西.</li>
-</ul>
-<p>@Retention是用来说明如何村已经被标记的注解，有三种可以选择的值</p>
-<ul>
-<li>SOURCE：标志注解会被编译器忽略，并只会保存在源代码中</li>
-<li>CLASS：表明这个注解会通过编译留在CLASS文件中，这样一些操作CLASS相关的代码都可以从CLASS中获取到改信息</li>
-<li>RUNTIME：表示该注解会被JVM中获取，这样在运行中我们就可以通过反射来获取到改注解</li>
-</ul>
-<p>下面的这段代码，就定义了一个注解，并且指定可以在运行时拿到该注解信息</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> NeedLogin &#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>@Target注解用来定义被注解的类型</p>
-<ul>
-<li>ANNOTATION_TYPE 表示该注解可以使用在注解上</li>
-<li>CONSTRUCTOR表示可以用到构造器上</li>
-<li>FIELD表示可以用到作用域上，</li>
-<li>METHOD表示可以用在方法上</li>
-<li>LOCAL_VARIABLE表示可以使用到局部变量上。</li>
-<li>METHOD可以使用到方法级别的注解上。</li>
-<li>PACKAGE可以使用到包声明上。</li>
-<li>PARAMETER可以使用到方法的参数上</li>
-<li>TYPE可以使用到一个类的任何元素上。</li>
-</ul>
-<p>注解的作用域比较多，可以根据需要，选择上面的一个或者多个来使用,下面这样定义注解的时候，就表示了改注解，只能定义在方法上和类上了.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@Target(&#123;ElementType.METHOD, ElementType.TYPE&#125;)</div><div class="line">@Retention(RetentionPolicy.RUNTIME)</div><div class="line">public @interface NeedLogin &#123;</div><div class="line"></div><div class="line">    boolean required() default true;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>@Documented表示该注解类型的元素会通过javadoc类似的工具进行文档化，该注解没有成员，用于注解那些影响客户使用代注解的元素声明的类型。如果类型使用@Documented来注解的，这种类型的注解被标注未程序元的公共API。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@Documented</div><div class="line">@Target(&#123;ElementType.METHOD, ElementType.TYPE&#125;)</div><div class="line">@Retention(RetentionPolicy.RUNTIME)</div><div class="line">public @interface NeedLogin &#123;</div><div class="line"></div><div class="line">    boolean required() default true;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>@Inherited注解时一个标记注解，阐述了某个被标注的类型是被继承的，如果使用了@Inherited修饰的注解被用于一个class，则这个注解将被用于该class的子类。需要注意的是，@Inherited类型是被标注过的class的子类所继承，类并不从他继承的interface中继承该注解，方法并不从他重载的method中继承该注解。如果我们在代码中使用反射的时候，在去查询一个@Interited注解类型的时候，反射代码检查器class和父类的class，直到发现制定的注解或者到达继承结构的顶层为止<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@Documented</div><div class="line">@Inherited</div><div class="line">@Target(&#123;ElementType.METHOD, ElementType.TYPE&#125;)</div><div class="line">@Retention(RetentionPolicy.RUNTIME)</div><div class="line">public @interface NeedLogin &#123;</div><div class="line"></div><div class="line">    boolean required() default true;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>上面给出了几种元注解的使用和如何定义自己的注解。在定义了注解以后，只是相当于给某段代码或者某个运行中的类，或者参数方法等打上了一个标签，具体怎么使用改标签来影城程序的运行，需要自己在代码中实现才可以。例如上面我们定义了一个@NeedLogin的注解，有一个参数，required默认未true，表示需要登陆的，现在我们就来使用该注解,在Student上使用该注解，表示学生需要登陆才可以.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@Data</div><div class="line">@NeedLogin(required = false)</div><div class="line">@NoArgsConstructor</div><div class="line">public class Student &#123;</div><div class="line">    private Integer age ;</div><div class="line"></div><div class="line">    private Integer score;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>我们可以在代码中通过反射的方式来拿到该注解，并通过注解的值来影响程序的运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Student student = new Student();</div><div class="line">NeedLogin needLogin = Student.class.getAnnotation(NeedLogin.class);</div><div class="line">if (needLogin != null &amp;&amp; !needLogin.required()) &#123;</div><div class="line">    System.out.println(&quot;no need login&quot;);</div><div class="line">&#125; else &#123;</div><div class="line">    System.out.println(&quot;need login&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在Java8中，注解的能力又进一步增强，在Java 8之前，只能允许在声明式前使用注解，而在Java 8中。注解可以用在使用Type的任何地方，比如对象初始化，对象转换 使用implements表达式或者使用throw表达式的时候<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//初始化对象时</div><div class="line">String myString = new @NotNull String();</div><div class="line"></div><div class="line">//对象类型转化时</div><div class="line">myString = (@NonNull String) str;</div><div class="line"></div><div class="line">//使用 implements 表达式时</div><div class="line">class MyList&lt;T&gt; implements @ReadOnly List&lt;@ReadOnly T&gt;&#123;</div><div class="line">                    …</div><div class="line">&#125;</div><div class="line"></div><div class="line">//使用 throws 表达式时</div><div class="line">public void validateValues() throws @Critical ValidationFailedException&#123;</div><div class="line">                    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>定义的时候也比较简单，只需要指定Target为 ElementType.TYPE_PARAMETER 或者 ElementType.TYPE_USE，或者同时指定这两个 Target。 </p>
-<p>在Java8中，同时允许Repeating Annotation 重复注解。因为在实际情况中，比如一个权限的注解中，在一个地方可能需要多个权限，在以前只能在一个注解上通过列表来实现，在Java8中可以允许一个位置有多个重复的注解来解决该问题。<br>由于兼容性的缘故，Repeating Annotation 并不是所有新定义的 Annotation 的默认特性，需要开发者根据自己的需求决定新定义的 Annotation 是否可以重复标注。Java 编译器会自动把 Repeating Annotation 储存到指定的 Container Annotation 中。而为了触发编译器进行这一操作，开发者需要进行以下的定义：</p>
-<p>首先，在需要重复标注特性的 Annotation 前加上 @Repeatable 标签，示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@Repeatable(AccessContainer.class)</div><div class="line">public @interface Access &#123;</div><div class="line">        String role();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>@Repeatable 标签后括号中的值即为指定的 Container Annotation 的类型。在这个例子中，Container Annotation 的类型是 AccessContainer，Java 编译器会把重复的 Access 对象保存在 AccessContainer 中。</p>
-<p>AccessContainer 中必须定义返回数组类型的 value 方法。数组中元素的类型必须为对应的 Repeating Annotation 类型。具体示例如:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> AccessContainer &#123;</div><div class="line">     Access[] value()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>可以通过 Java 的反射机制获取注解的 Annotation。一种方式是通过 AnnotatedElement 接口的 getAnnotationByType(Class<t>) 首先获得 Container Annotation，然后再通过 Container Annotation 的 value 方法获得 Repeating Annotation。另一种方式是用过 AnnotatedElement 接口的 getAnnotations(Class<t>) 方法一次性返回 Repeating Annotation。</t></t></p>
-<p>Repeating Annotation 使得开发者可以根据具体的需求对同一个声明式或者类型加上同一类型的注解，从而增加代码的灵活性和可读性。</p>
-<p>数量的使用注解，能够减少开发中的复杂性，而且能够使代码更加优雅清晰。在Java中定义Bean的时候，就可以使用 lombok来减少Get Set方法的定义。在Junit中和Spring中都有大量使用注解的地方，具有很好的参考意义。</p>
-<p>参考文档：<br><a href="https://www.ibm.com/developerworks/cn/java/j-lo-java8annotation/index.html" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/java/j-lo-java8annotation/index.html</a><br><a href="http://linbinghe.com/2017/ac8515d0.html" target="_blank" rel="external">http://linbinghe.com/2017/ac8515d0.html</a><br><a href="http://ifeve.com/java-annotations-tutorial/" target="_blank" rel="external">http://ifeve.com/java-annotations-tutorial/</a></p>
-
-          
+          在日常的开发中，经常会使用到类似这样的东西 @Test @Override等东西，特别是在使用第三方框架的时候比如Spring中就会有大量用到注解的地方。关于什么是注解？怎么去使用注解？如何实现一个注解？这些地方以前没有了解过，今天就把Java中关于注解的使用给理一理。
+注解是在J2SE 1.5版本
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/06/Java中注解的使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -453,6 +563,17 @@
 
           
           
+             <span id="/2017/10/27/Docker入门/" class="leancloud_visitors" data-flag-title="Docker入门">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -475,24 +596,15 @@
       
         
           
-            <p>在使用win的时候一直有个问题，很多软件需要用，但是使用频率很低，如果每个需要用的软件都装上的话，系统会变得非常庞大，后果就是导致系统运行起来非常缓慢，无奈只能重装系统了。在使用mac的时候，也遇到这种情况，而且删除软件的时候，不知道哪些文件改删除，哪些不改删除，慢慢的吞噬着硬盘的空间。近两年，微服务的概念兴起，偶然机会接触到docker，容器的概念，相当于虚拟机，但是对于传统虚拟机而言，启动和使用各方面都不尽相同，而且正好能够满足我的需求，于是在mac上安装docker来完成日常的开发工作，安装步骤如下。</p>
-<ol>
-<li>在mac上安装docker，下载地址<a href="https://www.docker.com/products/docker#/mac" target="_blank" rel="external">https://www.docker.com/products/docker#/mac</a> 下载安装即可</li>
-<li>docker上有镜像，和容器的概念，镜像相当于系统盘，容器相当于运行的系统。如果要运行系统，首先需要有系统盘才行。</li>
-<li>下载images，我想运行ubuntu系统，可以使用 docker search ubuntu 来搜索，然后找到需要的系统后，docker pull ubuntu即可。但是很遗憾，你会发现下载失败，因为index.docker.io原因无法访问，所以只能使用国内的镜像文件，阿里云上有ubuntu的镜像文件，从aliyun上下载的ubuntu镜像。下载命令如下。需要制定域名地址 docker pull registry.cn-hangzhou.aliyuncs.com/acs/ubuntu</li>
-<li>下载以后可以通过 docker images 查看镜像文件    </li>
-<li>通过docker run -ti ubuntu /bin/bash 启动容器，你会发现已经进去了ubuntu系统。</li>
-<li>进入系统以后，需要先执行apt-get update来更新源文件，接下来就是安装各种需要的软件了</li>
-<li>退出出系统以后，可以通过命令 docker ps -a查看正在运行的容器。</li>
-<li>在容器中安装了很多软件，如果还是用原来的镜像启动的话，那么每次都需要重新安装了，所以可以生成自己的images，从正在运行的容器中去生成，命令如下。 docker commit 2d4c49bd7269 ubuntu:develop</li>
-<li>如果推出容器之后，想再进去，可以运行  docker start 2d4c49bd7269 来启动，然后 docker attach 2d4c49bd7269来再次进去容器中去.</li>
-<li>如果想查看正在运行中的容器，可以使用docker ps -a来查看。</li>
-<li>如果要关掉某个容器的话，需要使用docker stop  docker rm 2d4c49bd7269 即可</li>
-<li>如果需要访问docker内的地址，可以使用下面的命令 -p 8080:8080  建立端口映射，这样访问本机8080端口，便会打到docker内部了</li>
-</ol>
-<p>上面这些命令，已经可以把docker玩转起来了，我在ubuntu中安装了mysql nginx redis等，简直就是理想的实验场地啊。</p>
-
-          
+          在使用win的时候一直有个问题，很多软件需要用，但是使用频率很低，如果每个需要用的软件都装上的话，系统会变得非常庞大，后果就是导致系统运行起来非常缓慢，无奈只能重装系统了。在使用mac的时候，也遇到这种情况，而且删除软件的时候，不知道哪些文件改删除，哪些不改删除，慢慢的吞噬着硬盘的空间。近两年，微服
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/27/Docker入门/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -588,6 +700,17 @@
 
           
           
+             <span id="/2017/10/26/堡垒机自动登录/" class="leancloud_visitors" data-flag-title="堡垒机自动登录">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -610,12 +733,16 @@
       
         
           
-            <p>公司登陆接入了堡垒机，每次只能先登陆堡机，再去登陆服务器，每次都需要输入两次IP地址和密码，用起来是相当麻烦，于是在网上搜了一个小工具，然后结合公司的IP地址，改造成一个能直接连线上和线下的堡垒机登陆工具，每次只需要输入一次IP地址就可以了，使用的时候把密码设置为自己的密码就OK了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/expect -f</span></div><div class="line"><span class="keyword">if</span> &#123;<span class="variable">$argc</span> &lt; 1&#125; &#123;</div><div class="line">    puts stdout <span class="string">"<span class="variable">$argv0</span> err params\n"</span></div><div class="line">    <span class="built_in">exit</span> 1</div><div class="line">&#125;</div><div class="line"></div><div class="line">proc do_console_login &#123; ip &#125; &#123;</div><div class="line">    puts <span class="variable">$ip</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">set</span> login zhuozi</div><div class="line"><span class="built_in">set</span> login_pass xxxxxxx  <span class="comment">#登陆密码</span></div><div class="line"><span class="built_in">set</span> login_ip aa.bb.cc.dd <span class="comment">#堡垒机地址</span></div><div class="line"><span class="built_in">set</span> login_port 22	<span class="comment">#堡垒机ssh端口</span></div><div class="line"></div><div class="line"><span class="built_in">set</span> timeout 10</div><div class="line"></div><div class="line"><span class="built_in">set</span> ip [lindex <span class="variable">$argv</span> 0]</div><div class="line"></div><div class="line">do_console_login <span class="variable">$ip</span></div><div class="line"></div><div class="line"><span class="comment">#登陆堡垒机</span></div><div class="line"><span class="keyword">if</span> &#123;[string match <span class="string">"xx.yy.*"</span> <span class="variable">$ip</span>]&#125; &#123;</div><div class="line">   spawn ssh <span class="variable">$login</span>@<span class="variable">$ip</span> -p <span class="variable">$login_port</span></div><div class="line"></div><div class="line">   expect &#123;</div><div class="line">        <span class="string">"*assword:"</span> &#123;send <span class="string">"<span class="variable">$login_pass</span>\n"</span>&#125;</div><div class="line"></div><div class="line">   &#125;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    spawn ssh <span class="variable">$login</span>@<span class="variable">$login_ip</span> -p <span class="variable">$login_port</span></div><div class="line"></div><div class="line">    expect &#123;</div><div class="line">        <span class="string">"*assword:"</span> &#123;send <span class="string">"<span class="variable">$login_pass</span>\n"</span>&#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    expect &#123;</div><div class="line">        <span class="string">"&gt;*"</span> &#123;send <span class="string">"<span class="variable">$ip</span> \n"</span>&#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    expect &#123;</div><div class="line">        <span class="string">"*assword:"</span> &#123;send <span class="string">"<span class="variable">$login_pass</span>\n"</span>&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">interact</div></pre></td></tr></table></figure>
-<p>使用这个的话需要装的有expect软件才可以。具体安装方法可以参考网上。上面代码的意思是，先根据IP地址判断是线下还是线上(线下环境不需要登陆堡垒机), 如果是线下环境，则直接登陆，然后用expect判断是否有Password或password的时候，输入密码即可。线上和线下差不多，不过是到堡垒机以后，判断“&gt;”(因为堡垒机再次登陆服务器时候提示框为“&gt;“)，然后把登陆的流程再走一遍即可。</p>
-<p>当然这个也存在一定的问题，服务器密码写入到文件中，如果被黑，别人就知道了服务器的密码，这个是个大问题。如果没有堡垒机的话，一般是用SSH加密，把自己的key添加到服务器的.ssh目录下实现免登陆的。这种方式会更安全一点。堡垒机就是为了安全，但是带来了麻烦。所以在简便和安全之间还是要做出取舍的。</p>
-
-          
+          公司登陆接入了堡垒机，每次只能先登陆堡机，再去登陆服务器，每次都需要输入两次IP地址和密码，用起来是相当麻烦，于是在网上搜了一个小工具，然后结合公司的IP地址，改造成一个能直接连线上和线下的堡垒机登陆工具，每次只需要输入一次IP地址就可以了，使用的时候把密码设置为自己的密码就OK了。
+1234567
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/26/堡垒机自动登录/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -695,7 +822,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -708,7 +835,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -914,6 +1041,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("kuSdAzdlAx1e6IoIR2qcPVMD-gzGzoHsz", "WBxo6nXm1FA4fALO55mt5MFR");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
