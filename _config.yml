@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://scyllakeeper.github.io/
+url: https://gourdfans.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -78,5 +78,5 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
     type: git
-    repo: git@github.com:ScyllaKeeper/scyllakeeper.github.io.git
+    repo: git@github.com:GourdFans/gourdfans.github.io.git 
     branch: master
