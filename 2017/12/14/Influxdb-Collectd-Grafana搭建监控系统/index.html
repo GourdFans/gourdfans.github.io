@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Docker," />
+  <meta name="keywords" content="监控," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="在使用win的时候一直有个问题，很多软件需要用，但是使用频率很低，如果每个需要用的软件都装上的话，系统会变得非常庞大，后果就是导致系统运行起来非常缓慢，无奈只能重装系统了。在使用mac的时候，也遇到这种情况，而且删除软件的时候，不知道哪些文件改删除，哪些不改删除，慢慢的吞噬着硬盘的空间。近两年，微服务的概念兴起，偶然机会接触到docker，容器的概念，相当于虚拟机，但是对于传统虚拟机而言，启动和使">
-<meta name="keywords" content="Docker">
+<meta name="description" content="上次开发了一个秒杀类似的业务，活动开始以后对系统监控，除了用阿里的Tsar来查看系统之外，还需要监控数据库，Redis之类的等等。一个窗口根本看不过来，所以就想着有没有监控系统来能够一眼看到系统的具体情况，在公司有一套监控系统，经过审查代码发现用的是Grafana来搭建的。经过调研发现线程的系统有两套 ELK或者是Grafana + Influxdb + Collectd来搭建。思路都差不多，每台">
+<meta name="keywords" content="监控">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker入门">
-<meta property="og:url" content="https://gourdfans.github.io/2017/10/27/Docker入门/index.html">
+<meta property="og:title" content="Influxdb+Collectd+Grafana搭建监控系统">
+<meta property="og:url" content="https://gourdfans.github.io/2017/12/14/Influxdb-Collectd-Grafana搭建监控系统/index.html">
 <meta property="og:site_name" content="zhang桌子的随笔">
-<meta property="og:description" content="在使用win的时候一直有个问题，很多软件需要用，但是使用频率很低，如果每个需要用的软件都装上的话，系统会变得非常庞大，后果就是导致系统运行起来非常缓慢，无奈只能重装系统了。在使用mac的时候，也遇到这种情况，而且删除软件的时候，不知道哪些文件改删除，哪些不改删除，慢慢的吞噬着硬盘的空间。近两年，微服务的概念兴起，偶然机会接触到docker，容器的概念，相当于虚拟机，但是对于传统虚拟机而言，启动和使">
+<meta property="og:description" content="上次开发了一个秒杀类似的业务，活动开始以后对系统监控，除了用阿里的Tsar来查看系统之外，还需要监控数据库，Redis之类的等等。一个窗口根本看不过来，所以就想着有没有监控系统来能够一眼看到系统的具体情况，在公司有一套监控系统，经过审查代码发现用的是Grafana来搭建的。经过调研发现线程的系统有两套 ELK或者是Grafana + Influxdb + Collectd来搭建。思路都差不多，每台">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-27T06:34:55.904Z">
+<meta property="og:updated_time" content="2017-12-13T16:06:39.382Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker入门">
-<meta name="twitter:description" content="在使用win的时候一直有个问题，很多软件需要用，但是使用频率很低，如果每个需要用的软件都装上的话，系统会变得非常庞大，后果就是导致系统运行起来非常缓慢，无奈只能重装系统了。在使用mac的时候，也遇到这种情况，而且删除软件的时候，不知道哪些文件改删除，哪些不改删除，慢慢的吞噬着硬盘的空间。近两年，微服务的概念兴起，偶然机会接触到docker，容器的概念，相当于虚拟机，但是对于传统虚拟机而言，启动和使">
+<meta name="twitter:title" content="Influxdb+Collectd+Grafana搭建监控系统">
+<meta name="twitter:description" content="上次开发了一个秒杀类似的业务，活动开始以后对系统监控，除了用阿里的Tsar来查看系统之外，还需要监控数据库，Redis之类的等等。一个窗口根本看不过来，所以就想着有没有监控系统来能够一眼看到系统的具体情况，在公司有一套监控系统，经过审查代码发现用的是Grafana来搭建的。经过调研发现线程的系统有两套 ELK或者是Grafana + Influxdb + Collectd来搭建。思路都差不多，每台">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://gourdfans.github.io/2017/10/27/Docker入门/"/>
+  <link rel="canonical" href="https://gourdfans.github.io/2017/12/14/Influxdb-Collectd-Grafana搭建监控系统/"/>
 
 
 
 
 
-  <title>Docker入门 | zhang桌子的随笔</title>
+  <title>Influxdb+Collectd+Grafana搭建监控系统 | zhang桌子的随笔</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gourdfans.github.io/2017/10/27/Docker入门/">
+    <link itemprop="mainEntityOfPage" href="https://gourdfans.github.io/2017/12/14/Influxdb-Collectd-Grafana搭建监控系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="桌子">
@@ -260,7 +260,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Docker入门</h2>
+          <h2 class="post-title" itemprop="name headline">Influxdb+Collectd+Grafana搭建监控系统</h2>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T14:30:16+08:00">
-                2017-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T00:01:29+08:00">
+                2017-12-14
               </time>
             
 
@@ -290,7 +290,7 @@
 
           
           
-             <span id="/2017/10/27/Docker入门/" class="leancloud_visitors" data-flag-title="Docker入门">
+             <span id="/2017/12/14/Influxdb-Collectd-Grafana搭建监控系统/" class="leancloud_visitors" data-flag-title="Influxdb+Collectd+Grafana搭建监控系统">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -321,22 +321,29 @@
       
 
       
-        <p>在使用win的时候一直有个问题，很多软件需要用，但是使用频率很低，如果每个需要用的软件都装上的话，系统会变得非常庞大，后果就是导致系统运行起来非常缓慢，无奈只能重装系统了。在使用mac的时候，也遇到这种情况，而且删除软件的时候，不知道哪些文件改删除，哪些不改删除，慢慢的吞噬着硬盘的空间。近两年，微服务的概念兴起，偶然机会接触到docker，容器的概念，相当于虚拟机，但是对于传统虚拟机而言，启动和使用各方面都不尽相同，而且正好能够满足我的需求，于是在mac上安装docker来完成日常的开发工作，安装步骤如下。</p>
-<ol>
-<li>在mac上安装docker，下载地址<a href="https://www.docker.com/products/docker#/mac" target="_blank" rel="external">https://www.docker.com/products/docker#/mac</a> 下载安装即可</li>
-<li>docker上有镜像，和容器的概念，镜像相当于系统盘，容器相当于运行的系统。如果要运行系统，首先需要有系统盘才行。</li>
-<li>下载images，我想运行ubuntu系统，可以使用 docker search ubuntu 来搜索，然后找到需要的系统后，docker pull ubuntu即可。但是很遗憾，你会发现下载失败，因为index.docker.io原因无法访问，所以只能使用国内的镜像文件，阿里云上有ubuntu的镜像文件，从aliyun上下载的ubuntu镜像。下载命令如下。需要制定域名地址 docker pull registry.cn-hangzhou.aliyuncs.com/acs/ubuntu</li>
-<li>下载以后可以通过 docker images 查看镜像文件    </li>
-<li>通过docker run -ti ubuntu /bin/bash 启动容器，你会发现已经进去了ubuntu系统。</li>
-<li>进入系统以后，需要先执行apt-get update来更新源文件，接下来就是安装各种需要的软件了</li>
-<li>退出出系统以后，可以通过命令 docker ps -a查看正在运行的容器。</li>
-<li>在容器中安装了很多软件，如果还是用原来的镜像启动的话，那么每次都需要重新安装了，所以可以生成自己的images，从正在运行的容器中去生成，命令如下。 docker commit 2d4c49bd7269 ubuntu:develop</li>
-<li>如果推出容器之后，想再进去，可以运行  docker start 2d4c49bd7269 来启动，然后 docker attach 2d4c49bd7269来再次进去容器中去.</li>
-<li>如果想查看正在运行中的容器，可以使用docker ps -a来查看。</li>
-<li>如果要关掉某个容器的话，需要使用docker stop  docker rm 2d4c49bd7269 即可</li>
-<li>如果需要访问docker内的地址，可以使用下面的命令 -p 8080:8080  建立端口映射，这样访问本机8080端口，便会打到docker内部了</li>
-</ol>
-<p>上面这些命令，已经可以把docker玩转起来了，我在ubuntu中安装了mysql nginx redis等，简直就是理想的实验场地啊。</p>
+        <p>上次开发了一个秒杀类似的业务，活动开始以后对系统监控，除了用阿里的Tsar来查看系统之外，还需要监控数据库，Redis之类的等等。一个窗口根本看不过来，所以就想着有没有监控系统来能够一眼看到系统的具体情况，在公司有一套监控系统，经过审查代码发现用的是Grafana来搭建的。经过调研发现线程的系统有两套 ELK或者是Grafana + Influxdb + Collectd来搭建。思路都差不多，每台机器上安装上收集器，把收集到的信息存放到ES或者时序数据库里面，然后通过Grafana或者Kiban来做前端展示。感觉Grafana比较简单一点，于是使用这套系统来搭建。</p>
+<p>首先是Grafana安装，可以参考官方文档进行安装都可以了，不过是国内下载比较慢，需要点时间才能下载下来。Centos安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.2-1.x86_64.rpm</div></pre></td></tr></table></figure>
+<p>安装完毕把应用加入到启动列表里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo /bin/systemctl daemon-reload</div><div class="line">sudo /bin/systemctl enable grafana-server.service</div></pre></td></tr></table></figure>
+<p>然后就可以启动Grafana了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /bin/systemctl start grafana-server.service</div></pre></td></tr></table></figure>
+<p>启动以后的Grafana会在3000端口，访问3000端口就可以访问系统了，接下来就是配置时序数据库,安装Influxdb，然后配置图标即可。</p>
+<p>Influxdb安装也可以参考官方文档，是一个Go语言来编写的时序数据库，关于时序数据库的概念，可以去Google一下，其实最主要的一点就是时间递增的，每条记录都有时间，这样能够清楚的知道一个数据的变化过程。Influxdb现在版本在1.。不过我安装的是1.0版本的，安装也特别简单，参考官网即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://dl.influxdata.com/influxdb/releases/influxdb-1.0.0.x86_64.rpm</div><div class="line">sudo yum localinstall influxdb-1.0.0.x86_64.rpm</div></pre></td></tr></table></figure>
+<p>在启动之前需要修改一下Influxdb配置，influxdb.conf。因为默认Collectd是关闭的，设置为开启即可，如果是内网绑定一下内网地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[[collectd]]</div><div class="line">  enabled = true</div><div class="line">  bind-address = &quot;127.0.0.1:25826&quot;</div><div class="line">  database = &quot;collectd&quot;</div></pre></td></tr></table></figure>
+<p>配置完毕以后启动influxdb:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service influxdb start</div></pre></td></tr></table></figure>
+<p>influxdb会在8083端口打开一个web的操作界面，可以通过web页面去操作数据，插入或者查询数据等操作，如果能够打开，说明也已经启动成功了。</p>
+<p>关于Collectd的安装，没有其他的参考官网安装即可，只需要在配置的时候，引入Network的Plugin并且配置Network地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;Plugin network&gt;</div><div class="line">        Server &quot;127.0.0.1&quot; &quot;25826&quot;</div><div class="line">&lt;/Plugin&gt;</div></pre></td></tr></table></figure>
+<p>25826是influxdb监听的端口，Collectd会把指定的数据写入到该端口，Influxdb会监听并把数据写入到数据库中.</p>
+<p>上面的都安装完毕以后，就需要在Grafana中配置DB，配置相应的图表。对于图表的配置需要花点时间去摸索，里面有很多函数，而且数据收集的单位之类的都不尽相同，现在之只能够搭建简单的监控，Collectd有很多插件可以去监控Mysql，redis等等。如果不满足要求，可以通过Influxdb的Client去收集自己系统中运行的数据，比如QPS、RT等信息。都可以用该系统来实现了。</p>
+<p>在搭建系统的过程中，有个地方是在配置时候花费比较多的时间的。第一个是Influxdb数据库到底怎么用，因为不同于Mysql中db和table的概念，在Influxdb中是metric和tag以及key和value的概念。所以如果想要使用该系统，需要对Influxdb有个大致的了解，可以先不用去看具体是如何实现的，数据是如何存储的等等信息，但是基本的概念约定要定清楚，不然像我一样连数据都写入不进去，就算写入进去了，不会查找和查看，走了很多的弯路。</p>
+<p>另外一个花费比较多时间的是，在Grafana创建图表的过程中，如何把值以你自己需要的方式展现出来，这也是一个不小的挑战，第一点需要搞清楚你到底想要看到那些数据，比如我想看到内存的使用量。那么第步就是到Influxdb中查询出需要的数据，查询是一条SQL语句，图表配置也是配置一个SQL语句的过程，所以如果能从数据库中正确的查询出自己需要的数据，图标按照查询语句配置就行了。数据查询出来以后会有单位的问题，还有就是是否直接显示、显示成波浪线还是什么之类的，xy各自标示什么意思等等，这些也都需要花点时间去摸索。自己如果想要收集数据去展示，最好先想好自己要收集那些数据，tag和key-value如何设计，图标怎么去展示想好以后再去动手。</p>
+<p>关于Influxdb + Grafana + collectd的介绍先介绍到这里，网上其他地方也有很多的教程，在配置过程中可以多出参考，不过官网上都介绍的挺详细的，跟着官网去配置一般都不会有太大的问题。自己搭建的一张图</p>
+
 
       
     </div>
@@ -354,7 +361,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Docker/" rel="tag"># Docker</a>
+            <a href="/tags/监控/" rel="tag"># 监控</a>
           
         </div>
       
@@ -367,8 +374,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/26/堡垒机自动登录/" rel="next" title="堡垒机自动登录">
-                <i class="fa fa-chevron-left"></i> 堡垒机自动登录
+              <a href="/2017/12/07/监控系统搭建/" rel="next" title="监控系统搭建">
+                <i class="fa fa-chevron-left"></i> 监控系统搭建
               </a>
             
           </div>
@@ -376,10 +383,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/06/Java中注解的使用/" rel="prev" title="Java中注解的使用">
-                Java中注解的使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
